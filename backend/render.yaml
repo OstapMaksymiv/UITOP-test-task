@@ -1,0 +1,22 @@
+# Render.com deployment blueprint for the backend.
+# Create a new "Blueprint" service in Render and point it at this repo;
+# Render reads this file to provision the web service.
+services:
+  - type: web
+    name: task-manager-backend
+    runtime: node
+    # Build from the backend/ subfolder of the monorepo.
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: node dist/main.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Render injects PORT automatically; the app reads process.env.PORT.
+      - key: DATABASE_PATH
+        value: /data/data.sqlite
+    # SQLite needs a persistent disk, otherwise data resets on every deploy.
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
