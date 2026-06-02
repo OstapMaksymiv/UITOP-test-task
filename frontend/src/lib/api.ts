@@ -2,7 +2,9 @@ import axios from "axios";
 import type { Category, CreateTodoInput, Todo } from "./types";
 
 export const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://task-api.onrender.com",
+  baseURL:
+    process.env.NEXT_PUBLIC_API_URL ||
+    "https://uitop-test-task-d0xh.onrender.com",
   headers: { "Content-Type": "application/json" },
 });
 

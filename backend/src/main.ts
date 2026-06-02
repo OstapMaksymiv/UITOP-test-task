@@ -9,7 +9,7 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: ["https://uitop-test-task-xi.vercel.app", "http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://uitop-test-task-xi.vercel.app"],
   });
 
   app.useGlobalPipes(
