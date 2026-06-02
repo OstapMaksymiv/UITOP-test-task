@@ -8,7 +8,9 @@ import { seedDatabase } from "./database/seed";
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors();
+  app.enableCors({
+    origin: ["https://uitop-test-task-xi.vercel.app", "http://localhost:3000"],
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
